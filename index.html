@@ -3,405 +3,384 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Bold Leaf Tea — Coming Soon</title>
+<title>Bold Leaf - Real Tea. Any Hour.</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&family=Inter:wght@400;500;600;700&family=Poppins:wght@900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=Poppins:wght@900&display=swap" rel="stylesheet">
 
 <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
 
+<!--
+  ===========================================================================
+  BOLD LEAF - pre-launch landing page
+  ---------------------------------------------------------------------------
+  HERO IMAGE: desktop uses 'newhero169.png' (16:9), mobile uses 'newhero45.png'
+              (4:5), swapped automatically at 640px. If your files are .jpg,
+              change the two url() references (in .hero and the 640px media query).
+  LOGO:       replace 'logo.png' (falls back to text if missing).
+  FLAVOURS:   the collection shows 4 SKUs. To launch with 3, delete one whole
+              <div class="sku ..."> block. To swap in Jasmine, use the JASMINE
+              block found at the bottom of this file.
+  KIT FORM:   integration preserved - do not change form action/data attrs.
+  ===========================================================================
+-->
+
 <style>
 :root {
-  --cream: #f3eee3;
+  --cream: #f6f4f0;
+  --cream-deep: #ece3d2;
+  --ink: #1c1109;
   --brown: #22150f;
-  --accent: #d97947;
   --muted: #7a6e63;
+
+  --red: #ff3131;
+  --red-deep: #e01f1f;
+
+  /* SKU colourways - bright, appetising, a collectible family */
+  --sku-black: #b23a2e;
+  --sku-earl: #f0a324;
+  --sku-jasmine: #e86a9c;
+  --sku-green: #4f9e5b;
+  --sku-oolong: #7a4bd0;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
   font-family: Inter, sans-serif;
   background: var(--cream);
   color: var(--brown);
+  -webkit-font-smoothing: antialiased;
 }
 
-.wrapper {
-  max-width: 1280px;
-  margin: auto;
-  padding: 24px;
+.wrapper { max-width: 1280px; margin: auto; padding: 24px; }
+
+/* HEADER */
+.topbar { display: flex; align-items: center; justify-content: space-between; margin: 8px 0 24px; }
+.logo img { height: 46px; width: auto; display: block; }
+.logo-text { font-family: Poppins, sans-serif; font-size: 34px; font-weight: 900; letter-spacing: -2px; color: var(--ink); }
+.decaf-tag {
+  font-family: Archivo, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--red);
 }
 
-.logo {
-  font-family: Poppins, sans-serif;
-  font-size: 42px;
-  font-weight: 900;
-  letter-spacing: -2px;
-  margin: 8px 0 24px;
-}
-
+/* HERO */
 .hero {
-  position: relative;
-  border-radius: 28px;
-  overflow: hidden;
-  min-height: 620px;
-  background: url('hero2.png') center/cover no-repeat;
+  position: relative; border-radius: 28px; overflow: hidden; min-height: 640px;
+  /* Desktop 16:9 hero. Mobile 4:5 hero is swapped in via the responsive rule below. */
+  background: url('newhero169.png') center/cover no-repeat, #1a0f08;
 }
+/* Overlay tuned for a brighter/busier image: darker on the left where text sits,
+   fading out to the right so the styled image still shows. Adjust the alpha values
+   (the .xx numbers) up for more text contrast, down to reveal more of the image. */
+.overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(18,9,4,.82), rgba(18,9,4,.55), rgba(18,9,4,.18)); }
+.content { position: relative; z-index: 2; max-width: 720px; padding: 72px 64px; color: #f7f2ea; }
+/* text-shadow gives legibility insurance over busier imagery */
+.content h1, .content .hero-sub, .content .badge { text-shadow: 0 1px 12px rgba(10,5,2,.45); }
+.badge { display: inline-block; border: 1px solid rgba(255,255,255,.35); padding: 8px 16px; border-radius: 999px; font-family: Archivo, sans-serif; font-size: 13px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #f7f2ea; background: rgba(18,9,4,.25); }
+h1, h2, h3, .display { font-family: Archivo, sans-serif; font-weight: 800; text-transform: uppercase; }
+h1 { font-size: clamp(52px, 7vw, 96px); line-height: .92; margin: 22px 0 10px; letter-spacing: -2.5px; font-weight: 900; }
+h1 .line { display: block; }
+h1 .accent { color: var(--red); }
+.hero-sub { font-family: Inter, sans-serif; font-size: clamp(19px, 2.1vw, 24px); line-height: 1.5; max-width: 540px; color: #f3e8dc; margin: 18px 0 0; }
+.hero-sub strong { color: #fff; font-weight: 600; }
 
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(20,10,4,.82),
-    rgba(20,10,4,.35),
-    rgba(20,10,4,.15)
-  );
-}
+/* KIT FORM */
+.formkit-form { margin-top: 30px; max-width: 100%; }
+.formkit-alert { width: 100%; margin: 0 0 12px; padding: 0; list-style: none; font-family: Inter, sans-serif; font-size: 14px; color: #f7f2ea; }
+.formkit-alert:empty { display: none; }
+.custom-kit-fields { display: flex; gap: 12px; flex-wrap: wrap; align-items: stretch; }
+.formkit-field { margin: 0; }
+.formkit-input { padding: 18px 20px !important; border-radius: 12px !important; border: 0 !important; min-width: 300px; height: 100%; font-family: Inter, sans-serif !important; font-size: 18px !important; color: var(--brown) !important; background: #fff !important; }
+.formkit-input:focus { outline: 3px solid var(--red); outline-offset: 2px; }
+.formkit-submit { background: var(--red) !important; color: #fff !important; border: 0 !important; padding: 18px 30px !important; border-radius: 12px !important; font-family: Archivo, sans-serif !important; font-weight: 800 !important; text-transform: uppercase; letter-spacing: .04em; cursor: pointer; min-height: 58px; transition: transform .12s ease, background .12s ease; }
+.formkit-submit:hover { background: var(--red-deep) !important; transform: translateY(-1px); }
+.formkit-submit span { padding: 0 !important; }
+.formkit-spinner { display: none; }
+.small { font-family: Inter, sans-serif; font-size: 15px; color: #d7c7b6; margin-top: 14px; }
 
-.content {
-  position: relative;
-  z-index: 2;
-  max-width: 700px;
-  padding: 80px 64px;
-  color: #f7f2ea;
-}
+/* PROOF STRIP */
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 20px; border-top: 2px solid var(--cream-deep); }
+.card { padding: 44px 40px; border-right: 2px solid var(--cream-deep); }
+.card:last-child { border-right: none; }
+.card .kicker { font-family: Archivo, sans-serif; font-size: 13px; font-weight: 800; color: var(--red); margin: 0 0 12px; letter-spacing: .14em; text-transform: uppercase; }
+.card h2 { font-family: Archivo, sans-serif; font-size: 23px; font-weight: 800; margin: 0 0 14px; letter-spacing: -.02em; }
+.card p { font-family: Inter, sans-serif; color: var(--brown); font-size: 17px; line-height: 1.55; max-width: 360px; margin: 0; }
 
-.badge {
-  display: inline-block;
-  border: 1px solid rgba(255,255,255,.25);
-  padding: 8px 16px;
-  border-radius: 999px;
-  font-family: Archivo, sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-}
+/* COLLECTION */
+.collection { margin-top: 64px; }
+.collection-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 28px; flex-wrap: wrap; }
+.collection-head h2 { font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(30px, 4vw, 48px); letter-spacing: -1.5px; margin: 0; line-height: .95; text-transform: uppercase; color: var(--ink); }
+.collection-head p { font-family: Inter, sans-serif; font-size: 17px; color: var(--muted); margin: 0; max-width: 340px; line-height: 1.5; }
 
-h1,
-h2,
-h3,
-.display {
-  font-family: Archivo, sans-serif;
-  font-weight: 800;
-  text-transform: uppercase;
-}
+.skus { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.sku { border-radius: 20px; overflow: hidden; color: #fff; position: relative; transition: transform .18s ease; display: flex; flex-direction: column; }
+.sku:hover { transform: translateY(-6px); }
+.sku.black { background: var(--sku-black); }
+.sku.earl { background: var(--sku-earl); color: #3a2408; }
+.sku.jasmine { background: var(--sku-jasmine); color: #4a132e; }
+.sku.green { background: var(--sku-green); }
+.sku.oolong { background: var(--sku-oolong); }
+.sku-art { width: 100%; height: 150px; display: block; }
+.sku-body { padding: 20px 22px 26px; display: flex; flex-direction: column; gap: 6px; }
+.sku-decaf { font-family: Archivo, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; opacity: .7; }
+.sku-name { font-family: Archivo, sans-serif; font-weight: 900; text-transform: uppercase; font-size: 26px; line-height: .95; letter-spacing: -.5px; margin: 2px 0 4px; }
+.sku-note { font-family: Inter, sans-serif; font-size: 14px; line-height: 1.45; opacity: .92; margin: 0; }
 
-h1 {
-  font-size: clamp(54px, 7vw, 92px);
-  line-height: .94;
-  margin: 24px 0;
-  letter-spacing: -2px;
-}
+/* CLOSER */
+.closer { margin-top: 64px; background: var(--red); border-radius: 28px; padding: 64px 56px; color: #fff; text-align: center; }
+/* Sunset-gradient alternative - swap the background above for this line to try it:
+   background: linear-gradient(120deg, #e23b26 0%, #f0a324 100%); */
+.closer h2 { font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(30px, 4.5vw, 54px); letter-spacing: -1.5px; margin: 0 0 16px; line-height: .98; }
+.closer h2 .accent { color: #ffe08a; }
+.closer p { font-family: Inter, sans-serif; font-size: 18px; color: #ffe4dd; max-width: 480px; margin: 0 auto; line-height: 1.5; }
 
-h1 .line {
-  display: block;
-  white-space: nowrap;
-}
+/* FOOTER */
+.footer { display: flex; justify-content: space-between; align-items: center; padding: 40px 8px 60px; color: var(--muted); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; gap: 16px; }
+.footer-brand { font-family: Archivo, sans-serif; font-weight: 800; }
+.footer-tagline { font-family: Inter, sans-serif; font-weight: 600; }
 
-h1 .accent {
-  color: var(--accent);
-}
-
-p {
-  font-family: Inter, sans-serif;
-  font-size: 28px;
-  line-height: 1.55;
-  max-width: 520px;
-  color: #ece1d4;
-}
-
-/* Kit form wrapper */
-.formkit-form {
-  margin-top: 28px;
-  max-width: 100%;
-}
-
-/* Kit alert / validation messages */
-.formkit-alert {
-  width: 100%;
-  margin: 0 0 12px;
-  padding: 0;
-  list-style: none;
-  font-family: Inter, sans-serif;
-  font-size: 14px;
-  color: #f7f2ea;
-}
-
-.formkit-alert:empty {
-  display: none;
-}
-
-/* Custom Kit form layout */
-.custom-kit-fields {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  align-items: stretch;
-}
-
-.formkit-field {
-  margin: 0;
-}
-
-.formkit-input {
-  padding: 18px 20px !important;
-  border-radius: 10px !important;
-  border: 0 !important;
-  min-width: 300px;
-  height: 100%;
-  font-family: Inter, sans-serif !important;
-  font-size: 18px !important;
-  color: var(--brown) !important;
-  background: white !important;
-}
-
-.formkit-input:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-.formkit-submit {
-  background: var(--accent) !important;
-  color: white !important;
-  border: 0 !important;
-  padding: 18px 28px !important;
-  border-radius: 10px !important;
-  font-family: Archivo, sans-serif !important;
-  font-weight: 800 !important;
-  text-transform: uppercase;
-  letter-spacing: .03em;
-  cursor: pointer;
-  min-height: 58px;
-}
-
-.formkit-submit:hover {
-  opacity: .92;
-}
-
-.formkit-submit span {
-  padding: 0 !important;
-}
-
-.formkit-spinner {
-  display: none;
-}
-
-.small {
-  font-family: Inter, sans-serif;
-  font-size: 15px;
-  color: #d7c7b6;
-  margin-top: 12px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: 48px;
-  border-top: 1px solid #e2d8ca;
-}
-
-.card {
-  padding: 44px 40px;
-  border-right: 1px solid #e2d8ca;
-}
-
-.card:last-child {
-  border-right: none;
-}
-
-.card h3 {
-  font-family: Archivo, sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  color: var(--accent);
-  margin: 0 0 14px;
-  letter-spacing: .06em;
-}
-
-.card h2 {
-  font-family: Archivo, sans-serif;
-  font-size: 24px;
-  font-weight: 800;
-  margin: 0 0 16px;
-  letter-spacing: -.02em;
-}
-
-.card p {
-  font-family: Inter, sans-serif;
-  color: var(--brown);
-  font-size: 18px;
-  line-height: 1.55;
-  max-width: 360px;
-  margin: 0;
-}
-
-.footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 36px 8px 60px;
-  color: var(--muted);
-  font-size: 14px;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-}
-
-.footer-brand {
-  font-family: Archivo, sans-serif;
-  font-weight: 800;
-}
-
-.footer-tagline {
-  font-family: Inter, sans-serif;
-  font-weight: 600;
-}
-
+/* RESPONSIVE */
 @media(max-width: 900px) {
-  .content {
-    padding: 48px 28px;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .card {
-    border-right: none;
-    border-bottom: 1px solid #e2d8ca;
-  }
-
-  .footer {
-    display: block;
-    line-height: 2;
-  }
-
-  .logo {
-    font-size: 30px;
-    letter-spacing: -1.5px;
-  }
-
-  p {
-    font-size: 20px;
-  }
-
-  .custom-kit-fields {
-    display: block;
-  }
-
-  .formkit-field,
-  .formkit-input,
-  .formkit-submit {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .formkit-submit {
-    margin-top: 12px;
-  }
+  .content { padding: 48px 28px; }
+  .grid { grid-template-columns: 1fr; }
+  .card { border-right: none; border-bottom: 2px solid var(--cream-deep); }
+  .card:last-child { border-bottom: none; }
+  .skus { grid-template-columns: repeat(2, 1fr); }
+  .footer { display: block; line-height: 2.4; }
+  .hero-sub { font-size: 19px; }
+  .custom-kit-fields { display: block; }
+  .formkit-field, .formkit-input, .formkit-submit { width: 100%; min-width: 0; }
+  .formkit-submit { margin-top: 12px; }
+  .closer { padding: 48px 28px; }
 }
-
 @media(max-width: 480px) {
-  h1 {
-    font-size: 42px;
-    letter-spacing: -1px;
-  }
-
-  h1 .line {
-    white-space: normal;
-  }
+  h1 { font-size: 44px; letter-spacing: -1.5px; }
+  .skus { grid-template-columns: 1fr; }
 }
+/* MOBILE HERO - swaps in the 4:5 portrait image and uses a bottom-weighted
+   overlay (better for a centered portrait subject than a left-right gradient). */
+@media(max-width: 640px) {
+  .hero {
+    min-height: 560px;
+    background: url('newhero45.png') center/cover no-repeat, #1a0f08;
+  }
+  .overlay { background: linear-gradient(180deg, rgba(18,9,4,.35), rgba(18,9,4,.35) 40%, rgba(18,9,4,.85)); }
+  .content { padding: 40px 26px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 560px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 </style>
 </head>
 
 <body>
 <div class="wrapper">
 
-  <div class="logo">BOLD LEAF</div>
+  <!-- HEADER -->
+  <div class="topbar">
+    <div class="logo">
+      <img src="logo.png" alt="Bold Leaf" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span class=\'logo-text\'>BOLD LEAF</span>')">
+    </div>
+    <div class="decaf-tag">Decaf, and proud of it</div>
+  </div>
 
-  <section class="hero">
+  <!-- HERO -->
+  <section class="hero" id="top">
     <div class="overlay"></div>
-
     <div class="content">
-      <div class="badge">COMING SOON</div>
-
+      <div class="badge">Coming Soon</div>
       <h1 class="display">
-        <span class="line">BOLD FLAVOR.</span>
-        <span class="line accent">NO CAFFEINE.</span>
+        <span class="line">Real tea.</span>
+        <span class="line accent">Any hour.</span>
       </h1>
-
-      <p>
-        Rich oolongs, floral green, and comforting black teas thoughtfully decaffeinated to be enjoyed by anyone, any time of day. Be first to sip.
+      <p class="hero-sub">
+        Full-bodied, flavour-first tea - properly <strong>decaffeinated with CO₂, not chemicals</strong>. So you can have a real cup at 9pm without lying awake and questioning your whole life at 2am.
       </p>
 
+      <!-- KIT FORM - integration preserved -->
       <form
         action="https://app.kit.com/forms/9452335/subscriptions"
-        class="seva-form formkit-form"
-        method="post"
-        data-sv-form="9452335"
-        data-uid="df5ba34209"
-        data-format="inline"
-        data-version="5"
-        data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Success! Now check your email to confirm your subscription.","redirect_url":""},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"recaptcha":{"enabled":false},"return_visitor":{"action":"show","custom_content":""}},"version":"5"}'
+        class="seva-form formkit-form" method="post"
+        data-sv-form="9452335" data-uid="df5ba34209" data-format="inline" data-version="5"
+        data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"You&#39;re in. We&#39;ll send one email when the first collection drops.","redirect_url":""},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"recaptcha":{"enabled":false},"return_visitor":{"action":"show","custom_content":""}},"version":"5"}'
       >
         <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
-
         <div data-element="fields" class="custom-kit-fields">
           <div class="formkit-field">
-            <input
-              class="formkit-input"
-              name="email_address"
-              aria-label="Email Address"
-              placeholder="Enter your email"
-              required
-              type="email"
-            >
+            <input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="Enter your email" required type="email">
           </div>
-
           <button data-element="submit" class="formkit-submit" type="submit">
-            <div class="formkit-spinner">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-            <span>GET FIRST SIP ACCESS</span>
+            <div class="formkit-spinner"><div></div><div></div><div></div></div>
+            <span>Be first to sip</span>
           </button>
         </div>
       </form>
-
       <div class="small">No spam. One email when we launch.</div>
     </div>
   </section>
 
+  <!-- PROOF STRIP -->
   <section class="grid">
     <div class="card">
-      <h3>01</h3>
-      <h2>FULL FLAVOUR</h2>
-      <p>Decaffeinated without compromising depth or character.</p>
+      <p class="kicker">Full flavour</p>
+      <h2>The good stuff stays</h2>
+      <p>Real, full-bodied tea. We just left out the part that keeps you up.</p>
     </div>
-
     <div class="card">
-      <h3>02</h3>
-      <h2>CLEAN PROCESS</h2>
-      <p>Naturally decaffeinated using the CO₂ method and zero chemicals.</p>
+      <p class="kicker">Clean process</p>
+      <h2>CO₂, not chemicals</h2>
+      <p>Decaffeinated with pressurized carbon dioxide. The flavour stays; the caffeine goes. No solvents, ever.</p>
     </div>
-
     <div class="card">
-      <h3>03</h3>
-      <h2>ALL HOURS</h2>
-      <p>Crafted for evenings. Enjoyed anytime.</p>
+      <p class="kicker">Any hour</p>
+      <h2>Your 9pm era</h2>
+      <p>Built for the after-4pm cup. Works at 7am too - we won't tell.</p>
     </div>
   </section>
 
+  <!-- COLLECTION -->
+  <section class="collection">
+    <div class="collection-head">
+      <h2>The first<br>collection.</h2>
+      <p>A small lineup, launching in limited quantities. We're keeping the exact flavours under wraps - for now.</p>
+    </div>
+
+    <div class="skus">
+
+      <!-- CATEGORY: SOMETHING BOLD (black) -->
+      <div class="sku black">
+        <svg class="sku-art" viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="260" height="150" fill="#9c2f24"/>
+          <circle cx="130" cy="150" r="70" fill="#c9463a" opacity=".5"/>
+          <path d="M95 70 h55 a6 6 0 0 1 6 6 v34 a20 20 0 0 1 -20 20 h-27 a20 20 0 0 1 -20 -20 v-34 a6 6 0 0 1 6 -6 z" fill="#3a120c"/>
+          <path d="M156 80 h10 a12 12 0 0 1 0 24 h-10" fill="none" stroke="#3a120c" stroke-width="7"/>
+          <ellipse cx="122" cy="72" rx="27" ry="6" fill="#1f0a06"/>
+          <path d="M112 52 q-6 -10 0 -20 q6 -10 0 -18" fill="none" stroke="#f4d9c9" stroke-width="4" stroke-linecap="round" opacity=".85"/>
+          <path d="M132 50 q-6 -10 0 -20 q6 -10 0 -18" fill="none" stroke="#f4d9c9" stroke-width="4" stroke-linecap="round" opacity=".6"/>
+        </svg>
+        <div class="sku-body">
+          <span class="sku-decaf">Decaf</span>
+          <h3 class="sku-name">Something bold</h3>
+          <p class="sku-note">A full-bodied backbone for any hour. You'll know it when you taste it.</p>
+        </div>
+      </div>
+
+      <!-- CATEGORY: SOMETHING BRIGHT (earl/amber) -->
+      <div class="sku earl">
+        <svg class="sku-art" viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="260" height="150" fill="#e0900f"/>
+          <circle cx="130" cy="0" r="70" fill="#f6b53f" opacity=".55"/>
+          <path d="M92 78 h76 v6 a30 30 0 0 1 -30 30 h-16 a30 30 0 0 1 -30 -30 z" fill="#5a3708"/>
+          <ellipse cx="130" cy="78" rx="38" ry="8" fill="#3a2408"/>
+          <path d="M168 86 h8 a13 13 0 0 1 0 26 h-6" fill="none" stroke="#5a3708" stroke-width="7"/>
+          <ellipse cx="130" cy="122" rx="44" ry="7" fill="#5a3708"/>
+          <circle cx="130" cy="52" r="20" fill="#fff4d6"/>
+          <circle cx="130" cy="52" r="20" fill="none" stroke="#5a3708" stroke-width="3"/>
+          <g stroke="#5a3708" stroke-width="2">
+            <line x1="130" y1="34" x2="130" y2="70"/><line x1="112" y1="52" x2="148" y2="52"/>
+            <line x1="117" y1="39" x2="143" y2="65"/><line x1="143" y1="39" x2="117" y2="65"/>
+          </g>
+        </svg>
+        <div class="sku-body">
+          <span class="sku-decaf">Decaf</span>
+          <h3 class="sku-name">Something bright</h3>
+          <p class="sku-note">Aromatic, a little theatrical. The one you'll want at 9pm.</p>
+        </div>
+      </div>
+
+      <!-- CATEGORY: SOMETHING FRESH (green) -->
+      <div class="sku green">
+        <svg class="sku-art" viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="260" height="150" fill="#3f8a4b"/>
+          <circle cx="200" cy="140" r="80" fill="#5cb268" opacity=".5"/>
+          <path d="M100 60 h60 l-8 60 a8 8 0 0 1 -8 7 h-20 a8 8 0 0 1 -8 -7 z" fill="#bfe6c4" opacity=".55"/>
+          <path d="M100 60 h60 l-8 60 a8 8 0 0 1 -8 7 h-20 a8 8 0 0 1 -8 -7 z" fill="none" stroke="#eafaec" stroke-width="3"/>
+          <path d="M107 92 h46 l-4 28 a8 8 0 0 1 -8 7 h-22 a8 8 0 0 1 -8 -7 z" fill="#dff5c4"/>
+          <ellipse cx="130" cy="60" rx="30" ry="6" fill="#eafaec"/>
+          <path d="M120 44 q-5 -9 0 -17" fill="none" stroke="#eafaec" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+          <path d="M140 44 q-5 -9 0 -17" fill="none" stroke="#eafaec" stroke-width="4" stroke-linecap="round" opacity=".6"/>
+        </svg>
+        <div class="sku-body">
+          <span class="sku-decaf">Decaf</span>
+          <h3 class="sku-name">Something fresh</h3>
+          <p class="sku-note">Clean, light on its feet, quietly fragrant. Bright without the buzz.</p>
+        </div>
+      </div>
+
+      <!-- CATEGORY: SOMETHING RARE (oolong) -->
+      <div class="sku oolong">
+        <svg class="sku-art" viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="260" height="150" fill="#6a3dbe"/>
+          <circle cx="60" cy="20" r="70" fill="#9061e0" opacity=".5"/>
+          <path d="M88 78 a42 30 0 0 1 84 0 a42 26 0 0 1 -84 0 z" fill="#2e1656"/>
+          <path d="M120 50 h20 l-4 -12 h-12 z" fill="#2e1656"/>
+          <rect x="122" y="34" width="16" height="6" rx="3" fill="#2e1656"/>
+          <path d="M172 66 q22 4 20 22 q-2 10 -12 12" fill="none" stroke="#2e1656" stroke-width="8"/>
+          <path d="M88 72 q-16 2 -18 14" fill="none" stroke="#2e1656" stroke-width="8"/>
+          <path d="M120 30 q-6 -8 0 -14 q6 -6 0 -12" fill="none" stroke="#e7d9ff" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+        </svg>
+        <div class="sku-body">
+          <span class="sku-decaf">Decaf</span>
+          <h3 class="sku-name">Something rare</h3>
+          <p class="sku-note">Layered, aromatic, hard to find in decaf. We went and did it anyway.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CLOSER -->
+  <section class="closer">
+    <h2>Great tea shouldn't come<br>with a <span class="accent">bedtime.</span></h2>
+    <p>The first collection drops soon, in limited quantities. Sign up above to be first to sip.</p>
+  </section>
+
+  <!-- FOOTER -->
   <div class="footer">
-    <div class="footer-brand">BOLD LEAF DECAF © 2026</div>
-    <div class="footer-tagline">FIRST COLLECTION LAUNCHING IN LIMITED QUANTITIES.</div>
+    <div class="footer-brand">Bold Leaf Decaf © 2026</div>
+    <div class="footer-tagline">First collection launching in limited quantities</div>
   </div>
 
 </div>
+
+<!--
+  ===========================================================================
+  JASMINE SKU TEMPLATE - paste this in place of the Earl Grey block above
+  if you launch with Jasmine instead.
+  ===========================================================================
+
+  <div class="sku jasmine">
+    <svg class="sku-art" viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="260" height="150" fill="#dd5d92"/>
+      <circle cx="205" cy="15" r="70" fill="#ef86ae" opacity=".5"/>
+      <path d="M100 62 h60 l-7 56 a8 8 0 0 1 -8 7 h-22 a8 8 0 0 1 -8 -7 z" fill="#ffd9e8" opacity=".55"/>
+      <path d="M100 62 h60 l-7 56 a8 8 0 0 1 -8 7 h-22 a8 8 0 0 1 -8 -7 z" fill="none" stroke="#fff0f6" stroke-width="3"/>
+      <ellipse cx="130" cy="62" rx="30" ry="6" fill="#fff0f6"/>
+      <g transform="translate(130 50)">
+        <g fill="#fff0f6">
+          <ellipse cx="0" cy="-12" rx="7" ry="11"/>
+          <ellipse cx="11" cy="-4" rx="7" ry="11" transform="rotate(72 11 -4)"/>
+          <ellipse cx="7" cy="9" rx="7" ry="11" transform="rotate(144 7 9)"/>
+          <ellipse cx="-7" cy="9" rx="7" ry="11" transform="rotate(216 -7 9)"/>
+          <ellipse cx="-11" cy="-4" rx="7" ry="11" transform="rotate(288 -11 -4)"/>
+        </g>
+        <circle cx="0" cy="0" r="5" fill="#f6c945"/>
+      </g>
+    </svg>
+    <div class="sku-body">
+      <span class="sku-decaf">Decaf</span>
+      <h3 class="sku-name">Jasmine</h3>
+      <p class="sku-note">Green tea scented with real jasmine. Fragrant, calm, quietly luxurious.</p>
+    </div>
+  </div>
+
+  ---------------------------------------------------------------------------
+  TO LAUNCH WITH 3 SKUs: delete one whole <div class="sku ..."> block and
+  change ".skus { grid-template-columns: repeat(4, 1fr); }" to "repeat(3, 1fr)".
+  ===========================================================================
+-->
+
 </body>
 </html>
