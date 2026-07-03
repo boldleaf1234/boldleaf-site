@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,10 +19,13 @@
   HERO IMAGE: desktop uses 'newhero169.png' (16:9), mobile uses 'newhero45.png'
               (4:5), swapped automatically at 640px. If your files are .jpg,
               change the two url() references (in .hero and the 640px media query).
+              Suggested shot: a single cup of dark tea in warm evening light,
+              moody and cinematic. See generation prompt provided separately.
   LOGO:       replace 'logo.png' (falls back to text if missing).
   FLAVOURS:   the collection shows 4 SKUs. To launch with 3, delete one whole
-              <div class="sku ..."> block. To swap in Jasmine, use the JASMINE
-              block found at the bottom of this file.
+              <div class="sku ..."> block. To swap Earl Grey for Jasmine,
+              replace the "SKU: EARL GREY" block with the JASMINE block found
+              at the bottom of this file (inside the commented-out template).
   KIT FORM:   integration preserved - do not change form action/data attrs.
   ===========================================================================
 -->
@@ -54,6 +58,7 @@ body {
   background: var(--cream);
   color: var(--brown);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 .wrapper { max-width: 1280px; margin: auto; padding: 24px; }
@@ -67,9 +72,11 @@ body {
   text-transform: uppercase; color: var(--red);
 }
 
-/* HERO */
+/* HERO - full-bleed, edge-to-edge, square */
 .hero {
-  position: relative; border-radius: 28px; overflow: hidden; min-height: 640px;
+  position: relative; overflow: hidden; min-height: 660px;
+  /* full-bleed break-out of the .wrapper */
+  width: 100vw; margin-left: calc(50% - 50vw);
   /* Desktop 16:9 hero. Mobile 4:5 hero is swapped in via the responsive rule below. */
   background: url('newhero169.png') center/cover no-repeat, #1a0f08;
 }
@@ -77,7 +84,8 @@ body {
    fading out to the right so the styled image still shows. Adjust the alpha values
    (the .xx numbers) up for more text contrast, down to reveal more of the image. */
 .overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(18,9,4,.82), rgba(18,9,4,.55), rgba(18,9,4,.18)); }
-.content { position: relative; z-index: 2; max-width: 720px; padding: 72px 64px; color: #f7f2ea; }
+.content { position: relative; z-index: 2; max-width: 1280px; margin: 0 auto; padding: 88px 24px; color: #f7f2ea; box-sizing: border-box; }
+.content > * { max-width: 720px; }
 /* text-shadow gives legibility insurance over busier imagery */
 .content h1, .content .hero-sub, .content .badge { text-shadow: 0 1px 12px rgba(10,5,2,.45); }
 .badge { display: inline-block; border: 1px solid rgba(255,255,255,.35); padding: 8px 16px; border-radius: 999px; font-family: Archivo, sans-serif; font-size: 13px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #f7f2ea; background: rgba(18,9,4,.25); }
@@ -112,12 +120,12 @@ h1 .accent { color: var(--red); }
 
 /* COLLECTION */
 .collection { margin-top: 64px; }
-.collection-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 28px; flex-wrap: wrap; }
+.collection-head { margin-bottom: 28px; }
 .collection-head h2 { font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(30px, 4vw, 48px); letter-spacing: -1.5px; margin: 0; line-height: .95; text-transform: uppercase; color: var(--ink); }
-.collection-head p { font-family: Inter, sans-serif; font-size: 17px; color: var(--muted); margin: 0; max-width: 340px; line-height: 1.5; }
+.collection-note { font-family: Inter, sans-serif; font-style: italic; font-size: 14px; color: var(--muted); text-align: center; max-width: 760px; margin: 24px auto 0; line-height: 1.5; }
 
 .skus { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-.sku { border-radius: 20px; overflow: hidden; color: #fff; position: relative; transition: transform .18s ease; display: flex; flex-direction: column; }
+.sku { border-radius: 6px; overflow: hidden; color: #fff; position: relative; transition: transform .18s ease; display: flex; flex-direction: column; }
 .sku:hover { transform: translateY(-6px); }
 .sku.black { background: var(--sku-black); }
 .sku.earl { background: var(--sku-earl); color: #3a2408; }
@@ -130,13 +138,15 @@ h1 .accent { color: var(--red); }
 .sku-name { font-family: Archivo, sans-serif; font-weight: 900; text-transform: uppercase; font-size: 26px; line-height: .95; letter-spacing: -.5px; margin: 2px 0 4px; }
 .sku-note { font-family: Inter, sans-serif; font-size: 14px; line-height: 1.45; opacity: .92; margin: 0; }
 
-/* CLOSER */
-.closer { margin-top: 64px; background: var(--red); border-radius: 28px; padding: 64px 56px; color: #fff; text-align: center; }
+/* CLOSER - full-bleed red band, square, bookends the hero */
+.closer { margin-top: 72px; background: var(--red); padding: 80px 24px; color: #fff; text-align: center; width: 100vw; margin-left: calc(50% - 50vw); }
+.closer-inner { max-width: 820px; margin: 0 auto; }
 /* Sunset-gradient alternative - swap the background above for this line to try it:
    background: linear-gradient(120deg, #e23b26 0%, #f0a324 100%); */
-.closer h2 { font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(30px, 4.5vw, 54px); letter-spacing: -1.5px; margin: 0 0 16px; line-height: .98; }
+.closer h2 { font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(20px, 4.6vw, 54px); letter-spacing: -1px; margin: 0 0 16px; line-height: 1.05; }
+.closer h2 .cl { display: block; white-space: nowrap; }
 .closer h2 .accent { color: #ffe08a; }
-.closer p { font-family: Inter, sans-serif; font-size: 18px; color: #ffe4dd; max-width: 480px; margin: 0 auto; line-height: 1.5; }
+.closer p { font-family: Inter, sans-serif; font-size: 18px; color: #ffe4dd; margin: 0 auto; line-height: 1.5; max-width: 720px; }
 
 /* FOOTER */
 .footer { display: flex; justify-content: space-between; align-items: center; padding: 40px 8px 60px; color: var(--muted); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; gap: 16px; }
@@ -145,7 +155,7 @@ h1 .accent { color: var(--red); }
 
 /* RESPONSIVE */
 @media(max-width: 900px) {
-  .content { padding: 48px 28px; }
+  .content { padding: 56px 24px; }
   .grid { grid-template-columns: 1fr; }
   .card { border-right: none; border-bottom: 2px solid var(--cream-deep); }
   .card:last-child { border-bottom: none; }
@@ -155,7 +165,7 @@ h1 .accent { color: var(--red); }
   .custom-kit-fields { display: block; }
   .formkit-field, .formkit-input, .formkit-submit { width: 100%; min-width: 0; }
   .formkit-submit { margin-top: 12px; }
-  .closer { padding: 48px 28px; }
+  .closer { padding: 56px 24px; }
 }
 @media(max-width: 480px) {
   h1 { font-size: 44px; letter-spacing: -1.5px; }
@@ -169,7 +179,7 @@ h1 .accent { color: var(--red); }
     background: url('newhero45.png') center/cover no-repeat, #1a0f08;
   }
   .overlay { background: linear-gradient(180deg, rgba(18,9,4,.35), rgba(18,9,4,.35) 40%, rgba(18,9,4,.85)); }
-  .content { padding: 40px 26px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 560px; }
+  .content { padding: 40px 24px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 560px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 </style>
@@ -244,7 +254,6 @@ h1 .accent { color: var(--red); }
   <section class="collection">
     <div class="collection-head">
       <h2>The first<br>collection.</h2>
-      <p>A small lineup, launching in limited quantities. We're keeping the exact flavours under wraps - for now.</p>
     </div>
 
     <div class="skus">
@@ -329,12 +338,16 @@ h1 .accent { color: var(--red); }
       </div>
 
     </div>
+
+    <p class="collection-note">A small lineup, launching in limited quantities. We're keeping the exact flavours under wraps - for now.</p>
   </section>
 
   <!-- CLOSER -->
   <section class="closer">
-    <h2>Great tea shouldn't come<br>with a <span class="accent">bedtime.</span></h2>
-    <p>The first collection drops soon, in limited quantities. Sign up above to be first to sip.</p>
+    <div class="closer-inner">
+      <h2><span class="cl">Great tea shouldn't come</span><span class="cl">with a <span class="accent">bedtime.</span></span></h2>
+      <p>The first collection drops soon, in limited quantities. Sign up above to be first to sip.</p>
+    </div>
   </section>
 
   <!-- FOOTER -->
@@ -348,7 +361,7 @@ h1 .accent { color: var(--red); }
 <!--
   ===========================================================================
   JASMINE SKU TEMPLATE - paste this in place of the Earl Grey block above
-  if you launch with Jasmine instead.
+  if you launch with Jasmine instead. (Uncomment and move up into .skus)
   ===========================================================================
 
   <div class="sku jasmine">
