@@ -4,7 +4,50 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Bold Leaf - Real Tea. Any Hour.</title>
+
+<!-- ===========================================================================
+     SEO & SOCIAL META
+     Update the domain (https://boldleaf.ca) if it ever changes, and swap
+     'og-image.jpg' for a real 1200x630 share image once you have one.
+     =========================================================================== -->
+
+<title>Bold Leaf | Premium Decaf Tea, Any Hour</title>
+<meta name="description" content="Premium decaffeinated tea, done properly. Full-bodied black, green, and oolong teas decaffeinated with CO₂, not chemicals - so you can enjoy a real cup at any hour. Coming soon in Canada." />
+<meta name="keywords" content="premium decaf tea, decaffeinated tea, CO2 decaf tea, decaf black tea, decaf green tea, decaf oolong, caffeine free tea, evening tea, decaf tea Canada" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://boldleaf.ca/" />
+
+<!-- Open Graph (Facebook, LinkedIn, iMessage, etc.) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Bold Leaf" />
+<meta property="og:title" content="Bold Leaf | Premium Decaf Tea, Any Hour" />
+<meta property="og:description" content="Premium decaffeinated tea, done properly. Real full-bodied tea decaffeinated with CO₂, not chemicals - so you can have a real cup at any hour. Coming soon." />
+<meta property="og:url" content="https://boldleaf.ca/" />
+<meta property="og:image" content="https://boldleaf.ca/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_CA" />
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Bold Leaf | Premium Decaf Tea, Any Hour" />
+<meta name="twitter:description" content="Premium decaffeinated tea, done properly. Real tea, decaffeinated with CO₂, not chemicals. Coming soon." />
+<meta name="twitter:image" content="https://boldleaf.ca/og-image.jpg" />
+
+<!-- Structured data: helps Google understand the brand -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Bold Leaf",
+  "alternateName": "Bold Leaf Decaf",
+  "url": "https://boldleaf.ca/",
+  "logo": "https://boldleaf.ca/logo.png",
+  "description": "Premium decaffeinated tea decaffeinated with CO₂, not chemicals. Full-bodied black, green, and oolong teas for any hour of the day.",
+  "foundingDate": "2026",
+  "areaServed": "CA"
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,7 +131,8 @@ body {
 .content > * { max-width: 720px; }
 /* text-shadow gives legibility insurance over busier imagery */
 .content h1, .content .hero-sub, .content .badge { text-shadow: 0 1px 12px rgba(10,5,2,.45); }
-.badge { display: inline-block; border: 1px solid rgba(255,255,255,.35); padding: 8px 16px; border-radius: 999px; font-family: Archivo, sans-serif; font-size: 13px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #f7f2ea; background: rgba(18,9,4,.25); }
+.badge { display: inline-flex; align-items: center; gap: 14px; font-family: Archivo, sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .32em; text-transform: uppercase; color: #fbf6ef; padding: 0; border: 0; background: none; }
+.badge::before { content: ""; width: 32px; height: 2px; background: var(--red); display: inline-block; }
 h1, h2, h3, .display { font-family: Archivo, sans-serif; font-weight: 800; text-transform: uppercase; }
 h1 { font-size: clamp(52px, 7vw, 96px); line-height: .92; margin: 22px 0 10px; letter-spacing: -2.5px; font-weight: 900; }
 h1 .line { display: block; }
